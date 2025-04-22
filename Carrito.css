@@ -1,0 +1,167 @@
+/* Estilos generales */
+body {
+    background: url('./Images/Fondooo.jpg') no-repeat center center/cover;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px; /* Espacio para el header fijo */
+    margin: 20px;
+}
+
+/* Header fijo */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 95%;
+    background: linear-gradient(to right, #75b587, #eaf9ed);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 900;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Botón de cerrar sesión */
+.button {
+    background: #d9534f;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background: #c9302c;
+}
+
+/* Contenedor de productos */
+.productos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Tarjetas de productos */
+.producto {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(91, 91, 91, 0.2);
+    text-align: center;
+    width: 250px;
+    transition: transform 0.3s ease;
+}
+
+.producto:hover {
+    transform: scale(1.05);
+}
+
+.producto img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Información de productos */
+.info p {
+    margin: 5px 0;
+}
+
+.precio {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+/* Botón de agregar producto */
+button {
+    background: #5cb85c;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #4cae4c;
+}
+
+/* Tabla del carrito */
+.tabla-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(91, 91, 91, 0.2);
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+    overflow-x: auto;
+}
+
+/* Diseño de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background: linear-gradient(to right, #b57587, #d9a7b5);
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+}
+
+td {
+    border-bottom: 2px solid #ddd;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Botón eliminar */
+.boton-eliminar {
+    background: rgb(192, 57, 43);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton-eliminar:hover {
+    background: darkred;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(to right, #75b587, #eaf9ed);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    width: 100%;
+    font-size: 14px;
+    border-radius: 50px;
+    margin-top: auto;
+}

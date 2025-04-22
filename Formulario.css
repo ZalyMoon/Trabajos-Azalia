@@ -1,0 +1,128 @@
+body {
+    background: url('./Images/Fondooo.jpg') no-repeat center center/cover;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(91, 91, 91, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+h1, h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.input-nombre {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-field label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: gray; 
+}
+
+.input-field input,
+.input-field textarea {
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+    outline: none;
+    width: 100%;
+}
+
+button {
+    background: rgb(38, 38, 38);
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #444;
+}
+
+/* Estilos para la tabla */
+.tabla-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    margin-top: 15px;
+    border-radius: 20px;
+    box-shadow: 5 10px 10px rgba(91, 91, 91, 0.2);
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border-bottom: 2px solid gray;
+    padding: 5px;
+}
+
+th {
+    background-color: #ddd;
+}
+
+.boton-eliminar,
+.boton-editar
+ {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.boton-eliminar:hover,
+.boton-editar:hover 
+{
+    background: darkred;
+}
+
+.boton-guardarE
+{
+    background: red;
+    color: white;
+    border: none;
+    padding: 2px 14px;
+    border-radius: 3px;
+    cursor: pointer;  
+}
+
+.boton-guardarE:hover 
+{
+    background: darkred;
+}
+
+
+

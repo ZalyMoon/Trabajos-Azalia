@@ -1,0 +1,59 @@
+body {
+    background: url('./Images/FondoDeter.jpg') no-repeat center center/cover;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(91, 91, 91, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+.input-nombre {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-field label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: gray; 
+}
+.input-field input {
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+    outline: none;
+    width: 100%;
+}
+button {
+    background: rgb(38, 38, 38);
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #444;
+}

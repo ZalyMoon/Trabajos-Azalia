@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="InicioSesion.css">
+</head>
+<body>
+    <div class="container">
+        <h1>INICIO DE SESIÓN</h1>
+        <form id="Ingreso">
+            <div class="input-nombre">
+                <div class="input-field">
+                    <label for="user">Usuario:</label>
+                    <input type="text" id="user" placeholder="Tu usuario">
+                </div>
+                <div class="input-field">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" placeholder="Tu contraseña">
+                </div>
+            </div>
+            <button type="submit">Login</button>
+            <p id="mensaje" style="color: red;"></p> 
+            <div class="input-field">
+                <p><a href="Recuperar.html">Recupera tu contraseña</a> | <a href="Formulario.html"> Crea una cuenta</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('Ingreso').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            iniciarSesion();
+        });
+
+        function iniciarSesion() {
+            const user = document.getElementById('user').value.trim();
+            const contrasena = document.getElementById('contrasena').value.trim();
+            const mensaje = document.getElementById('mensaje');
+
+            if (!user || !contrasena) {
+                mensaje.textContent = "Por favor, completa todos los campos.";
+                return;
+            }
+
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            let usuarioRegistrado = usuarios.find(u => u.user === user && u.contrasena === contrasena);
+
+            if (usuarioRegistrado) {
+                
+                localStorage.setItem('usuarioActivo', JSON.stringify(usuarioRegistrado));
+
+                window.location.href = "Carrito.html";
+            } else {
+                mensaje.textContent = "Usuario o contraseña incorrectos. Inténtalo de nuevo.";
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras</title>
+    <link rel="stylesheet" href="Carrito.css">
+</head>
+<body>
+    
+    <header class="header">
+        <h1 id="bienvenida">BIENVENIDO</h1>
+        <div>
+            <button class="button" onclick="cerrarSesion()">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <main class="productos">
+        <section class="producto">
+            <img src="./Images/moira.jpeg" alt="Labial">
+            <div class="info">
+                <p><strong>Gloss Rojo</strong></p>
+                <p>Marca: Moira</p>
+                <p class="precio">$350</p>
+                <button onclick="agregarProducto('Gloss Rojo', 'Moira', 350)">Agregar</button>
+            </div>
+        </section>
+
+        <section class="producto">
+            <img src="./Images/Moira3.jpeg" alt="Labial">
+            <div class="info">
+                <p><strong>Gloss Café</strong></p>
+                <p>Marca: Moira</p>
+                <p class="precio">$390</p>
+                <button onclick="agregarProducto('Gloss Café', 'Moira', 390)">Agregar</button>
+            </div>
+        </section>
+
+        <section class="producto">
+            <img src="./Images/Moira2.jpeg" alt="Labial">
+            <div class="info">
+                <p><strong>Gloss Rosa</strong></p>
+                <p>Marca: Moira</p>
+                <p class="precio">$420</p>
+                <button onclick="agregarProducto('Gloss Rosa', 'Moira', 420)">Agregar</button>
+            </div>
+        </section>
+
+        <section class="producto">
+            <img src="./Images/Moira1.jpeg" alt="Labial">
+            <div class="info">
+                <p><strong>Gloss Metálico</strong></p>
+                <p>Marca: Moira</p>
+                <p class="precio">$315</p>
+                <button onclick="agregarProducto('Gloss Metálico', 'Moira', 315)">Agregar</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="tabla-container" class="tabla-container" style="display: none;">
+        <h2 id="Carrito">Carrito de Compras</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Marca</th>
+                    <th>Precio</th>
+                    <th>Cant</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody id="datosG"></tbody>
+        </table>
+        <h3>Total: $<span id="total">0</span></h3>
+        <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 | Tienda de Labiales</p>
+    </footer> 
+
+
+
+
+
+
+    <script>
+        function cargarUsuario() {
+            let usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+            let tituloBienvenida = document.getElementById('bienvenida');
+
+            if (usuarioActivo) {
+                tituloBienvenida.textContent = `BIENVENIDO ${usuarioActivo.user}`;
+                mostrarCarrito(); 
+            } else {
+                window.location.href = "InicioSesion.html";
+            }
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem('usuarioActivo'); 
+            window.location.href = "InicioSesion.html";
+        }
+
+        function agregarProducto(nombre, marca, precio) {
+            let usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+            if (!usuarioActivo) {
+                alert("Debes iniciar sesión para agregar productos al carrito");
+                return;
+            }
+
+            let carritoKey = `carrito_${usuarioActivo.user}`;
+            let productos = JSON.parse(localStorage.getItem(carritoKey)) || [];
+
+            let existe = productos.find(p => p.nombre === nombre);
+            if (existe) {
+                existe.cantidad += 1;
+            } else {
+                productos.push({ nombre, marca, precio, cantidad: 1 });
+            }
+
+            localStorage.setItem(carritoKey, JSON.stringify(productos));
+            mostrarCarrito();
+        }
+
+        function mostrarCarrito() {
+            let usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+            if (!usuarioActivo) return;
+
+            let carritoKey = `carrito_${usuarioActivo.user}`;
+            let productos = JSON.parse(localStorage.getItem(carritoKey)) || [];
+            const tbody = document.getElementById('datosG');
+            const tablaContainer = document.getElementById('tabla-container');
+            const totalElemento = document.getElementById('total');
+
+            tbody.innerHTML = "";
+            let total = 0;
+
+            tablaContainer.style.display = productos.length ? "block" : "none";
+            let CarritoDe = document.getElementById("Carrito")
+            CarritoDe.textContent=`Carrito de compras de ${usuarioActivo.user}`; 
+
+            productos.forEach((producto, index) => {
+                total += producto.precio * producto.cantidad;
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${producto.nombre}</td>
+                    <td>${producto.marca}</td>
+                    <td>$${producto.precio}</td>
+                    <td>${producto.cantidad}</td>
+                    <td><button class="boton-eliminar" onclick="eliminarProducto(${index})">Eliminar</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            totalElemento.textContent = `${total.toFixed(2)}`;
+        }
+
+        function eliminarProducto(index) {
+            let usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+            if (!usuarioActivo) return;
+
+            let carritoKey = `carrito_${usuarioActivo.user}`;
+            let productos = JSON.parse(localStorage.getItem(carritoKey)) || [];
+
+            productos.splice(index, 1);
+            localStorage.setItem(carritoKey, JSON.stringify(productos));
+            mostrarCarrito();
+        }
+
+        function vaciarCarrito() {
+            let usuarioActivo = JSON.parse(localStorage.getItem('usuarioActivo'));
+            if (!usuarioActivo) return;
+
+            let carritoKey = `carrito_${usuarioActivo.user}`;
+            localStorage.removeItem(carritoKey);
+            mostrarCarrito();
+        }
+
+        window.onload = cargarUsuario;
+    </script>
+</body>
+</html>
+
+
